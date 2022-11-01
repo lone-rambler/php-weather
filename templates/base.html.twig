@@ -16,6 +16,11 @@
     <body>
         <a href="/location">CRUD Location</a>
         <a href="/measurement">CRUD Measurement</a>
+
+        {% if is_granted('ROLE_USER') %}
+        <a href="/logout">Wyloguj</a>
+        {% endif %}
+
         {% block body %}{% endblock %}
     </body>
 </html>

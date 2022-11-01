@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Measurement index{% endblock %}
-
 {% block body %}
     <h1>Measurement index</h1>
 
@@ -25,8 +23,13 @@
                 <td>{{ measurement.description }}</td>
                 <td>{{ measurement.emojiId }}</td>
                 <td>
+                    {% if is_granted('ROLE_MEASUREMENT_SHOW') %}
                     <a href="{{ path('app_measurement_show', {'id': measurement.id}) }}">show</a>
+                    {% endif %}
+
+                    {% if is_granted('ROLE_MEASUREMENT_EDIT') %}
                     <a href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -37,5 +40,7 @@
         </tbody>
     </table>
 
+    {% if is_granted('ROLE_MEASUREMENT_NEW') %}
     <a href="{{ path('app_measurement_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}
