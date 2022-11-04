@@ -94,4 +94,9 @@ class Measurement
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return (string) $this->getLocation().'|'.$this->getDatetime()->format('d.m.Y').'|'.$this->getTemperature().'|'.$this->getDescription();
+    }
 }

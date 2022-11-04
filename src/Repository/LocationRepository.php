@@ -32,6 +32,15 @@ class LocationRepository extends ServiceEntityRepository
         return $result;
     }
 
+    public function findByLocationId(Int $locationId){
+        $qb = $this->createQueryBuilder('l');
+        $qb->where('l.id = :id')
+            ->setParameter('id', $locationId);
+        $query = $qb->getQuery();
+        $result = $query->getOneOrNullResult();
+        return $result;
+    }
+
     public function save(Location $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
